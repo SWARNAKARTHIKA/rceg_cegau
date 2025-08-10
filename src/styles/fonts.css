@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.font-visual-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+/* Ensures the content is centered and responsive */
+.app-zoom-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* Normal scale for mobile */
+.app-zoom {
+  width: 100%;
+}
+
+/* Scale down to 67% for screens >= 1024px (desktop) */
+@media (min-width: 1024px) {
+  .app-zoom {
+    transform: scale(0.80);
+    transform-origin: top center;
+    width: 149.25%; /* Compensate for scale shrink */
+  }
+}
