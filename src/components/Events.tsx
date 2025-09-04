@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import conclave from '../assets/conc.jpg';
 import sangarsh from '../assets/sangarsh.jpg';
@@ -13,10 +14,19 @@ const Events = () => {
       <div className="container mx-auto px-6">
         
         {/* Section Heading */}
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-5xl font-bold text-amber-900 mb-6">Signature Events</h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-yellow-600 mx-auto mb-8"></div>
-        </div>
+         <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-5xl font-extrabold text-amber-900 mb-3">
+           EVENTS
+          </h2>
+          <div className="relative w-32 h-1 mx-auto mb-8 overflow-hidden rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 animate-[move_3s_linear_infinite]" />
+          </div>
+        </motion.div>
 
         {/* Events Grid */}
         <div className="grid lg:grid-cols-4 gap-8">

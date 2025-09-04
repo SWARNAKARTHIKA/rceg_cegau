@@ -20,70 +20,39 @@ import pic14 from "../assets/14.jpg";
 gsap.registerPlugin(ScrollTrigger);
 
 const Gallery = () => {
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-  const row3Ref = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const createMarquee = (
-      target: HTMLDivElement | null,
-      direction: number,
-      duration: number
-    ) => {
-      if (!target) return;
-      const totalWidth = target.scrollWidth / 2;
-
-      gsap.to(target, {
-        x: direction > 0 ? `-${totalWidth}px` : `${totalWidth}px`,
-        duration,
-        ease: "none",
-        repeat: -1,
-        paused: true,
+useEffect(() => {
+  const rows = galleryRef.current?.querySelectorAll(".gallery-row");
+  if (rows && rows.length > 0) {
+    rows.forEach((row) => {
+      gsap.from(row, {
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: target,
-          start: "top bottom",
-          end: "bottom top",
-          onEnter: () => gsap.globalTimeline.resume(),
-          onLeave: () => gsap.globalTimeline.pause(),
-          onEnterBack: () => gsap.globalTimeline.resume(),
-          onLeaveBack: () => gsap.globalTimeline.pause(),
+          trigger: row,
+          start: "top 85%",
+          once: true,
         },
       });
-    };
+    });
 
-    createMarquee(row1Ref.current, 1, 20);
-    createMarquee(row2Ref.current, -1, 25);
-    createMarquee(row3Ref.current, 1, 30);
-  }, []);
+    ScrollTrigger.refresh();
+  }
+}, []);
 
-  const GalleryRow = ({
-    images,
-    rowRef,
-  }: {
-    images: string[];
-    rowRef: React.RefObject<HTMLDivElement>;
-  }) => (
-    <div className="overflow-hidden">
-      <div ref={rowRef} className="flex gap-6 w-max will-change-transform">
-        {[...images, ...images].map((image, idx) => (
-          <div
-            key={idx}
-            className="relative flex-shrink-0 w-80 h-60 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group"
-          >
-            <img
-              src={image}
-              alt={`Gallery ${idx}`}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+
+
+  const images = [
+    pic1, pic2, pic3, pic4, pic5,
+    pic6, pic7, pic8, pic9, pic10,
+    pic11, pic12, pic13, pic14
+  ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-amber-50 to-stone-100 overflow-hidden">
+    <section className="py-20 bg-gradient-to-b from-amber-50 to-stone-100">
       <div className="mb-16 text-center fade-in">
         <h2 className="text-5xl font-bold text-amber-900 mb-6">
           Our Journey in Pictures
@@ -91,16 +60,26 @@ const Gallery = () => {
         <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-yellow-600 mx-auto mb-8"></div>
       </div>
 
-      <div className="space-y-8">
-        <GalleryRow images={[pic1, pic2, pic3, pic4, pic5]} rowRef={row1Ref} />
-        <GalleryRow
-          images={[pic6, pic7, pic8, pic9, pic10]}
-          rowRef={row2Ref}
-        />
-        <GalleryRow
-          images={[pic11, pic12, pic13, pic14]}
-          rowRef={row3Ref}
-        />
+      <div
+        ref={galleryRef}
+        className="grid gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px]"
+      >
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className={`gallery-item relative overflow-hidden rounded-xl shadow-lg group
+              ${idx % 5 === 0 ? "row-span-2" : ""}
+              ${idx % 7 === 0 ? "col-span-2" : ""}
+            `}
+          >
+            <img
+              src={img}
+              alt={`Gallery ${idx}`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        ))}
       </div>
     </section>
   );

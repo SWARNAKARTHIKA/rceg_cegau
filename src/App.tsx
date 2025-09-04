@@ -7,6 +7,7 @@ import About from './components/About';
 import Events from './components/Events';
 import Team from './components/Team';
 import Gallery from './components/Gallery';
+import Navbar from './components/Navbar'; 
 import HealthCampDetail from './components/HealthCampDetail';
 import './styles/fonts.css';
 
@@ -52,13 +53,14 @@ const HomePage = () => {
 
       {/* Everything else is zoomed */}
       <div className="app-zoom-wrapper">
-        <div className="app-zoom">
-          
+        <div>
+          <Navbar/>
           <About />
           <div className="h-[2px] bg-brown-100"></div>
           <Events />
-           <Gallery />
           <Team />
+           <Gallery />
+          
          
         </div>
       </div>

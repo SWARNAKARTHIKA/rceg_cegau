@@ -1,131 +1,89 @@
-import React from 'react';
-import { Mail, Phone, Linkedin } from 'lucide-react';
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+import js from "../assets/ob/js.jpg";
+import pres from "../assets/ob/pres.jpg";
+import contents from "../assets/ob/contents.jpg";
+import design from "../assets/ob/design.jpg";
+import events from "../assets/ob/events.jpeg";
+import hr from "../assets/ob/hr.jpeg";
+import ir from "../assets/ob/ir.jpg";
+import ir_2 from "../assets/ob/ir 2.jpg";
+import marketing from "../assets/ob/marketing.jpg";
+import saa from "../assets/ob/seargent at arms.jpg";
+import sec from "../assets/ob/sec.jpg";
+import tres from "../assets/ob/tres.jpg";
 
 const Team = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
   const teamMembers = [
-    {
-      id: 1,
-      name: "Priya Sharma",
-      position: "President",
-      image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "president@rotaractceg.org",
-      phone: "+91 9876543210",
-      linkedin: "priya-sharma-rotaract"
-    },
-    {
-      id: 2,
-      name: "Arjun Kumar",
-      position: "Vice President",
-      image: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "vp@rotaractceg.org",
-      phone: "+91 9876543211",
-      linkedin: "arjun-kumar-rotaract"
-    },
-    {
-      id: 3,
-      name: "Meera Patel",
-      position: "Secretary",
-      image: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "secretary@rotaractceg.org",
-      phone: "+91 9876543212",
-      linkedin: "meera-patel-rotaract"
-    },
-    {
-      id: 4,
-      name: "Rajesh Menon",
-      position: "Treasurer",
-      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "treasurer@rotaractceg.org",
-      phone: "+91 9876543213",
-      linkedin: "rajesh-menon-rotaract"
-    },
-    {
-      id: 5,
-      name: "Sneha Reddy",
-      position: "Community Service Director",
-      image: "https://images.pexels.com/photos/3778876/pexels-photo-3778876.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "community@rotaractceg.org",
-      phone: "+91 9876543214",
-      linkedin: "sneha-reddy-rotaract"
-    },
-    {
-      id: 6,
-      name: "Vikram Singh",
-      position: "Club Service Director",
-      image: "https://images.pexels.com/photos/2625122/pexels-photo-2625122.jpeg?auto=compress&cs=tinysrgb&w=300",
-      email: "clubservice@rotaractceg.org",
-      phone: "+91 9876543215",
-      linkedin: "vikram-singh-rotaract"
-    }
+    { id: 1, name: "Ramajayam V", position: "President", image: pres },
+    { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
+     { id: 1, name: "Ramajayam V", position: "President", image: pres },
+    { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
+    { id: 3, name: "Ashmi Sri Lakshmi", position: "Treasurer", image: tres },
+    { id: 4, name: "Sudharshan Karthik T", position: "Seargent at arms", image: saa },
+    { id: 1, name: "Ramajayam V", position: "President", image: pres },
+    { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
+    { id: 3, name: "Ashmi Sri Lakshmi", position: "Treasurer", image: tres },
+    { id: 4, name: "Sudharshan Karthik T", position: "Seargent at arms", image: saa },
+    { id: 5, name: "Swarna Karthika N", position: "Joint Secretary", image: js },
+    { id: 6, name: "Rohith V", position: "Head of Alumni Relations", image: ir },
+    { id: 7, name: "Deerkkadharshini", position: "Head of Contents", image: contents },
+    { id: 8, name: "Sornamala", position: "Head of Design", image: design },
+    { id: 9, name: "Kalisvikramkumar", position: "Head of Events", image: events },
+    { id: 10, name: "Moses J", position: "Head of Human Resources", image: hr },
+    { id: 11, name: "Nandhitta S", position: "Head of Industrial Relations", image: ir_2 },
+    { id: 12, name: "Ajay B", position: "Head of Marketing", image: marketing },
   ];
 
-  return (
-    <section className="py-20 bg-gradient-to-b from-stone-100 to-amber-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-5xl font-bold text-amber-900 mb-6">Our Team</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-yellow-600 mx-auto mb-8"></div>
-          <p className="text-xl text-stone-700 max-w-3xl mx-auto">
-            Meet the dedicated leaders who drive our mission of service and community impact
-          </p>
-        </div>
+  // Each card is 16rem wide (w-64) + 1.5rem gap = ~17.5rem (280px)
+  const cardWidth = 280; 
+  const totalWidth = teamMembers.length * cardWidth;
+  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1280;
+  const scrollAmount = totalWidth - viewportWidth;
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
-            <div 
-              key={member.id} 
-              className="slide-up scale-in group"
+  // Map vertical scroll to horizontal movement (px instead of %)
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollAmount]);
+
+  return (
+    <motion.section
+      ref={ref}
+      className="relative h-[300vh] bg-gradient-to-br from-amber-50 to-amber-100"
+    >
+      {/* Sticky container */}
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Heading */}
+        <h2 className="text-5xl font-extrabold text-amber-900 mb-12">
+          Our Team
+        </h2>
+
+        {/* Cards */}
+        <motion.div style={{ x }} className="flex gap-6">
+          {teamMembers.map((member) => (
+            <div
+              key={member.id}
+              className="relative flex-shrink-0 w-64 h-80 rounded-xl shadow-lg overflow-hidden"
             >
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-center">
-                  <div className="relative mb-6">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-amber-200 group-hover:border-amber-400 transition-colors shadow-lg"
-                    />
-                    <div className="absolute inset-0 w-32 h-32 rounded-full mx-auto bg-gradient-to-t from-amber-600/20 to-transparent group-hover:from-amber-600/40 transition-all"></div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-stone-800 mb-2 group-hover:text-amber-800 transition-colors">
-                    {member.name}
-                  </h3>
-                  <p className="text-amber-700 font-semibold mb-6 text-lg">
-                    {member.position}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <a 
-                      href={`mailto:${member.email}`}
-                      className="flex items-center justify-center gap-3 text-stone-600 hover:text-amber-700 transition-colors"
-                    >
-                      <Mail className="w-4 h-4" />
-                      <span className="text-sm">{member.email}</span>
-                    </a>
-                    <a 
-                      href={`tel:${member.phone}`}
-                      className="flex items-center justify-center gap-3 text-stone-600 hover:text-amber-700 transition-colors"
-                    >
-                      <Phone className="w-4 h-4" />
-                      <span className="text-sm">{member.phone}</span>
-                    </a>
-                    <a 
-                      href={`https://linkedin.com/in/${member.linkedin}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 text-stone-600 hover:text-amber-700 transition-colors"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                      <span className="text-sm">LinkedIn</span>
-                    </a>
-                  </div>
-                </div>
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 right-0 bg-amber-900/90 text-white p-3 w-full text-right">
+                <h3 className="text-lg font-bold">{member.name}</h3>
+                <p className="text-sm text-amber-200">{member.position}</p>
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
