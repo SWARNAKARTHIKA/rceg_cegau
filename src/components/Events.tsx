@@ -53,7 +53,7 @@ const Events = () => {
           {/* Event 1 */}
           <div
             className="slide-up scale-in group cursor-pointer"
-            onClick={() => navigate('/health-camp')}
+           
           >
             <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="relative overflow-hidden">
