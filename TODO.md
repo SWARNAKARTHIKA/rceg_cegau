@@ -11,4 +11,10 @@
 9. [x] Fix Contact section: Ensure text fits in mobile view, adjust layout for small screens.
 10. [x] Fix Events section: Ensure text shows properly in mobile view.
 11. [x] Update Team component: Show profile with left and right buttons in profile view on mobile.
-12. Ensure images show full size in mobile view without cropping.
+12. [x] Ensure images show full size in mobile view without cropping.
+
+# New Task: Create Loader Page
+13. [x] Create src/components/Loader.tsx: Loader with Tamil text in big font, English smaller, plain background with 2 different colors.
+14. [x] Integrate Loader into App.tsx: Show loader for 3 seconds, then transition to main content.
+15. [x] Add Tamil font import and class to fonts.css.
+16. [x] Test the loader display and transition.

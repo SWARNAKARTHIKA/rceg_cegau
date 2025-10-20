@@ -6,6 +6,16 @@ export default {
        fontFamily: {
         neue: ['"Neue Machina"', 'sans-serif'],
       },
+            animation: {
+        'color-change': 'color-change 2s ease-in-out infinite'
+      },
+      keyframes: {
+        'color-change': {
+          '0%, 100%': { color: '#39640f' },    // amber-600
+          '33%': { color: '#092764' },         // yellow-600
+          '66%': { color: '#580964' },         // amber-700 640f0f
+        }
+      },
       screens: {
         'xs': '475px',
         'sm': '640px',
