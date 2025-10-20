@@ -52,7 +52,7 @@ useEffect(() => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-amber-50 to-stone-100">
+    <section id="gallery" className="py-20 bg-gradient-to-b from-amber-50 to-stone-100">
       <div className="mb-16 text-center fade-in">
         <h2 className="text-5xl font-bold text-amber-900 mb-6">
           Our Journey in Pictures

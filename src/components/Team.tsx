@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { Mail, Phone, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
 
 import js from "../assets/ob/js.jpg";
 import pres from "../assets/ob/pres.jpg";
@@ -15,23 +16,11 @@ import sec from "../assets/ob/sec.jpg";
 import tres from "../assets/ob/tres.jpg";
 
 const Team = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
   const teamMembers = [
     { id: 1, name: "Ramajayam V", position: "President", image: pres },
     { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
-     { id: 1, name: "Ramajayam V", position: "President", image: pres },
-    { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
     { id: 3, name: "Ashmi Sri Lakshmi", position: "Treasurer", image: tres },
-    { id: 4, name: "Sudharshan Karthik T", position: "Seargent at arms", image: saa },
-    { id: 1, name: "Ramajayam V", position: "President", image: pres },
-    { id: 2, name: "Sudharshan S", position: "Secretary", image: sec },
-    { id: 3, name: "Ashmi Sri Lakshmi", position: "Treasurer", image: tres },
-    { id: 4, name: "Sudharshan Karthik T", position: "Seargent at arms", image: saa },
+    { id: 4, name: "Sudharshan Karthik T", position: "Seargent at Arms", image: saa },
     { id: 5, name: "Swarna Karthika N", position: "Joint Secretary", image: js },
     { id: 6, name: "Rohith V", position: "Head of Alumni Relations", image: ir },
     { id: 7, name: "Deerkkadharshini", position: "Head of Contents", image: contents },
@@ -42,48 +31,100 @@ const Team = () => {
     { id: 12, name: "Ajay B", position: "Head of Marketing", image: marketing },
   ];
 
-  // Each card is 16rem wide (w-64) + 1.5rem gap = ~17.5rem (280px)
-  const cardWidth = 280; 
-  const totalWidth = teamMembers.length * cardWidth;
-  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1280;
-  const scrollAmount = totalWidth - viewportWidth;
+  // Duplicate list for seamless infinite loop
+  const extendedList = [...teamMembers, ...teamMembers];
+  const controls = useAnimation();
+  const carouselRef = useRef(null);
 
-  // Map vertical scroll to horizontal movement (px instead of %)
-  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollAmount]);
+  // Scroll handler for buttons
+  const scroll = (direction) => {
+    if (carouselRef.current) {
+      const { scrollLeft, clientWidth } = carouselRef.current;
+      const scrollAmount = clientWidth * 0.8; // how far to scroll per click
+      carouselRef.current.scrollTo({
+        left: direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
-    <motion.section
-      ref={ref}
-      className="relative h-[300vh] bg-gradient-to-br from-amber-50 to-amber-100"
-    >
-      {/* Sticky container */}
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-        {/* Heading */}
-        <h2 className="text-5xl font-extrabold text-amber-900 mb-12">
-          Our Team
-        </h2>
+    <section id="team" className="py-20 bg-gradient-to-b from-stone-100 to-amber-50 overflow-hidden relative">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-5xl font-extrabold text-amber-900 mb-3">TEAM</h2>
+          <div className="relative w-32 h-1 mx-auto overflow-hidden rounded-full">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 animate-[move_3s_linear_infinite]" />
+          </div>
+        </motion.div>
 
-        {/* Cards */}
-        <motion.div style={{ x }} className="flex gap-6">
-          {teamMembers.map((member) => (
-            <div
-              key={member.id}
-              className="relative flex-shrink-0 w-64 h-80 rounded-xl shadow-lg overflow-hidden"
+        {/* Navigation buttons */}
+        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20">
+          <button
+            onClick={() => scroll("left")}
+            className="p-3 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-700 transition"
+          >
+            <ChevronLeft size={24} />
+          </button>
+        </div>
+        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20">
+          <button
+            onClick={() => scroll("right")}
+            className="p-3 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-700 transition"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Infinite horizontal scroll */}
+        <motion.div
+          ref={carouselRef}
+          className="flex overflow-x-scroll space-x-6 scrollbar-hide snap-x snap-mandatory"
+          style={{ scrollBehavior: "smooth" }}
+        >
+          {extendedList.map((member, index) => (
+            <motion.div
+              key={index}
+              className="min-w-[250px] sm:min-w-[300px] lg:min-w-[350px] flex-shrink-0 snap-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 right-0 bg-amber-900/90 text-white p-3 w-full text-right">
-                <h3 className="text-lg font-bold">{member.name}</h3>
-                <p className="text-sm text-amber-200">{member.position}</p>
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+                <div className="text-center">
+                  <div className="relative mb-6">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-amber-200 group-hover:border-amber-400 transition"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-stone-800 mb-2">{member.name}</h3>
+                  <p className="text-amber-700 font-semibold text-lg">{member.position}</p>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
-    </motion.section>
+
+      {/* Optional: Auto-scroll animation */}
+      <motion.div
+        animate={{
+          x: ["0%", "-50%"],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 30,
+          ease: "linear",
+        }}
+        className="hidden"
+      />
+    </section>
   );
 };
 

@@ -6,9 +6,9 @@ import logo4 from '../assets/logo.png';
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-yelow-200 shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-3 bg-white/80 shadow-m flex items-center justify-between">
-        
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
         {/* Left - Logos */}
         <div className="flex items-center gap-4">
           <img src={logo1} alt="Logo 1" className="w-10 h-10 object-contain" />
@@ -17,14 +17,21 @@ const Navbar = () => {
           <img src={logo4} alt="Logo 4" className="w-10 h-10 object-contain" />
         </div>
 
-        {/* Right - Nav Links */}
-        <div className="flex gap-8 text-lg font-semibold text-gray-700">
-          <a href="#home" className="hover:text-amber-700">Home</a>
-          <a href="#about" className="hover:text-amber-700">About</a>
-          <a href="#events" className="hover:text-amber-700">Events</a>
-          <a href="#team" className="hover:text-amber-700">Team</a>
-          <a href="#gallery" className="hover:text-amber-700">Gallery</a>
-          <a href="#contact" className="hover:text-amber-700">Contact</a>
+        {/* Right - Animated Pill Nav Links */}
+        <div className="flex gap-4">
+          {["Home", "About", "Events", "Team", "Gallery", "Contact"].map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="relative px-4 py-2 rounded-full font-semibold text-gray-700 overflow-hidden group"
+            >
+              {/* Background animation */}
+              <span className="absolute inset-0 bg-amber-500 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-bottom z-0"></span>
+              
+              {/* Text */}
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">{link}</span>
+            </a>
+          ))}
         </div>
       </div>
     </nav>

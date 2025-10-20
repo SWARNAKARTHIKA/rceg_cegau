@@ -9,7 +9,7 @@ const About = () => {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100">
+    <section id="about" className="relative py-20 overflow-hidden bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100">
       {/* Decorative blurred background circles */}
       <div className="absolute top-10 left-10 w-48 h-48 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-64 h-64 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>

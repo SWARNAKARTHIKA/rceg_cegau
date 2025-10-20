@@ -7,10 +7,10 @@ import About from './components/About';
 import Events from './components/Events';
 import Team from './components/Team';
 import Gallery from './components/Gallery';
-import Navbar from './components/Navbar'; 
+import Contact from './components/Contact';
+import Navbar from './components/Navbar';
 import HealthCampDetail from './components/HealthCampDetail';
 import './styles/fonts.css';
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,7 +47,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div ref={mainRef}>
+    <div ref={mainRef} className="bg-[#0f0f2b] text-white min-h-screen">
       {/* Hero stays full scale */}
       <Hero />
 
@@ -59,9 +59,8 @@ const HomePage = () => {
           <div className="h-[2px] bg-brown-100"></div>
           <Events />
           <Team />
-           <Gallery />
-          
-         
+          <Gallery />
+          <Contact />
         </div>
       </div>
     </div>
@@ -70,10 +69,12 @@ const HomePage = () => {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/health-camp" element={<HealthCampDetail />} />
-    </Routes>
+    <div className="bg-[#0f0f2b] min-h-screen text-white">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/health-camp" element={<HealthCampDetail />} />
+      </Routes>
+    </div>
   );
 }
 

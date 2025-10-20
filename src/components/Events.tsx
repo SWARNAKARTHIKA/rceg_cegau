@@ -10,7 +10,7 @@ const Events = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 bg-gradient-to-b from-amber-50 to-stone-100">
+    <section id="events" className="py-20 bg-gradient-to-b from-amber-50 to-stone-100">
       <div className="container mx-auto px-6">
         
         {/* Section Heading */}
