@@ -35,16 +35,16 @@ const Hero = () => {
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-6 text-center mt-16">
-          <h1 className="text-3xl md:text-7xl font-bold text-white mb-3 leading-tight drop-shadow-lg">
+          <h1 className="text-2xl sm:text-3xl md:text-7xl font-bold text-white mb-3 leading-tight drop-shadow-lg">
             Rotaract Club Of CEG
           </h1>
-          <p className="text-white/80 text-sm md:text-base mb-6 tracking-wide">
+          <p className="text-white/80 text-xs sm:text-sm md:text-base mb-6 tracking-wide">
             PARENT CLUB: ROTARACT CLUB OF MADRAS SOUTH R | DIST 3234
           </p>
-          <div className="text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto leading-relaxed">
+          <div className="text-lg sm:text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto leading-relaxed">
             <span className="font-semibold">{displayText}</span>
             {showCursor && <span className="animate-pulse">|</span>}
-            <span className="block mt-2 text-lg md:text-xl opacity-90">
+            <span className="block mt-2 text-base sm:text-lg md:text-xl opacity-90">
               Empowering communities through fellowship, leadership, and meaningful service
             </span>
           </div>

@@ -1,11 +1,14 @@
-# TODO: Connect Navbar Links to Sections
+# TODO List for Fixing Mobile Responsiveness Issues
 
-- [ ] Add id="home" to Hero section in src/components/Hero.tsx
-- [ ] Add id="about" to About section in src/components/About.tsx
-- [ ] Add id="events" to Events section in src/components/Events.tsx
-- [ ] Add id="team" to Team section in src/components/Team.tsx
-- [ ] Add id="gallery" to Gallery section in src/components/Gallery.tsx
-- [ ] Create Contact.tsx component with contact info in src/components/Contact.tsx
-- [ ] Add Contact component to App.tsx after Gallery
-- [ ] Ensure smooth scrolling by adding CSS in src/index.css if needed
-- [ ] Run app to test scrolling and verify all links work
+1. [x] Update src/App.tsx: Add `overflow-x-hidden` to the main container to prevent horizontal scrolling.
+2. [x] Update src/components/Navbar.tsx: Add React state for mobile menu toggle, hamburger icon, and collapsible menu for mobile views.
+3. [x] Run the development server to test responsiveness and mobile view.
+4. [x] Verify no horizontal overflow and navbar collapses properly on mobile.
+5. [x] Update Gallery component: Align all photos one below another in mobile view.
+6. [x] Update Team component: Show only one pic in mobile view.
+7. [x] Update Events component: Show buttons one by one below another in mobile phones.
+8. [x] Fix About section: Ensure text fits in mobile view, adjust padding and font sizes.
+9. [x] Fix Contact section: Ensure text fits in mobile view, adjust layout for small screens.
+10. [x] Fix Events section: Ensure text shows properly in mobile view.
+11. [x] Update Team component: Show profile with left and right buttons in profile view on mobile.
+12. Ensure images show full size in mobile view without cropping.

@@ -47,7 +47,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div ref={mainRef} className="bg-[#0f0f2b] text-white min-h-screen">
+    <div ref={mainRef} className="bg-[#0f0f2b] text-white min-h-screen overflow-x-hidden">
       {/* Hero stays full scale */}
       <Hero />
 
@@ -56,7 +56,7 @@ const HomePage = () => {
         <div>
           <Navbar/>
           <About />
-          <div className="h-[2px] bg-brown-100"></div>
+      
           <Events />
           <Team />
           <Gallery />

@@ -65,7 +65,7 @@ const HealthCampDetail = () => {
     <div ref={pageRef} className="min-h-screen bg-stone-50 font-visual-sans">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50 page-enter">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
           <button 
             onClick={() => navigate('/')}
             className="flex items-center gap-3 text-amber-800 hover:text-amber-900 transition-colors"
@@ -78,7 +78,7 @@ const HealthCampDetail = () => {
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-amber-100 to-stone-200">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center page-enter">
             <h1 className="text-5xl md:text-6xl font-bold text-amber-900 mb-6">
               Community Health Camp
@@ -107,7 +107,7 @@ const HealthCampDetail = () => {
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 page-enter">
             {stats.map((stat, index) => (
               <div key={index} className="text-center bg-stone-50 p-8 rounded-2xl shadow-lg">
@@ -125,7 +125,7 @@ const HealthCampDetail = () => {
 
       {/* Main Content */}
       <section className="py-20 bg-gradient-to-b from-stone-50 to-amber-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="page-enter mb-16">
               <h2 className="text-4xl font-bold text-amber-900 mb-8 text-center">Event Overview</h2>
@@ -168,7 +168,7 @@ const HealthCampDetail = () => {
 
       {/* Impact Section */}
       <section className="py-20 bg-gradient-to-br from-amber-900 to-stone-800 text-white">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center page-enter">
             <h2 className="text-4xl font-bold mb-8">Community Impact</h2>
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl">
