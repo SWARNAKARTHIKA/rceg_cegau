@@ -1,32 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
-import rcegBg from '../assets/rceg.png'; // ✅ adjust path if inside src/assets
+import rcegBg from '../assets/rceg.png';
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
-  const fullText = "Service Above Self";
-  const [showCursor, setShowCursor] = useState(true);
+  const [bgLoaded, setBgLoaded] = useState(false);
 
-  // ✅ Typewriter effect
+  // Lazy load background image
   useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index < fullText.length) {
-        setDisplayText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        index = 0;
-      }
-    }, 150);
-    return () => clearInterval(timer);
+    const img = new Image();
+    img.src = rcegBg;
+    img.onload = () => setBgLoaded(true);
   }, []);
 
   return (
     <section
       id="home"
-      className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat transition-opacity duration-700"
       style={{
-        backgroundImage: `url(${rcegBg})`,
+        backgroundImage: bgLoaded ? `url(${rcegBg})` : "none",
+        opacity: bgLoaded ? 1 : 0,
       }}
     >
       {/* Overlay */}
@@ -41,9 +33,10 @@ const Hero = () => {
           <p className="text-white/80 text-xs sm:text-sm md:text-base mb-6 tracking-wide">
             PARENT CLUB: ROTARACT CLUB OF MADRAS SOUTH R.I DIST 3234
           </p>
+
           <div className="text-lg sm:text-xl md:text-2xl text-stone-200 max-w-2xl mx-auto leading-relaxed">
-            <span className="font-semibold">{displayText}</span>
-            {showCursor && <span className="animate-pulse">|</span>}
+            <span className="font-semibold">Service Above Self</span>
+            <span className="animate-pulse">|</span>
             <span className="block mt-2 text-base sm:text-lg md:text-xl opacity-90">
               Empowering communities through fellowship, leadership, and meaningful service
             </span>
