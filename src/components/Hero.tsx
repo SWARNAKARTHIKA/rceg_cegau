@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
-import rcegBg from '../assets/rceg.png';
-
+import rcegBg from '../assets/rceg.webp';   
 const Hero = () => {
   const [bgLoaded, setBgLoaded] = useState(false);
 
