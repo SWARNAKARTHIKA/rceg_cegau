@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import pic from "../assets/grp_pic.jpg";
+import pic from "../assets/grp_pic.webp";
 
 const About = () => {
   const { scrollYProgress } = useScroll();
