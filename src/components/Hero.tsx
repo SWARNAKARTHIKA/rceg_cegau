@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ArrowDown } from 'lucide-react';
-
 
 const rcegBgCDN = 'https://res.cloudinary.com/dipcixbc4/image/upload/v1765884176/rceg_cyocwu.webp'; 
 
 const Hero = () => {
-  const [bgLoaded, setBgLoaded] = useState(false);
-
-  // Lazy load background image
-  useEffect(() => {
-    // 2. Use the CDN URL in the Image object source
-    const img = new Image();
-    img.src = rcegBgCDN;
-
-    img.onload = () => setBgLoaded(true);
-
-
-    return () => {
-        img.onload = null;
-    };
-  }, []);
-
   return (
     <section
       id="home"
-      className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat transition-opacity duration-700"
+      className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        // 3. Use the CDN URL in the background style property
-        backgroundImage: bgLoaded ? `url(${rcegBgCDN})` : "none", // <--- Changed to rcegBgCDN
-        opacity: bgLoaded ? 1 : 0,
+        backgroundImage: `url(${rcegBgCDN})`,
       }}
     >
       {/* Overlay */}
