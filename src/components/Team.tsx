@@ -15,6 +15,8 @@ import saa from "../assets/ob/seargent at arms.jpg";
 import sec from "../assets/ob/sec.jpg";
 import tres from "../assets/ob/tres.jpg";
 import hari from "../assets/ob/hari.jpg";
+import logi from "../assets/ob/logi.jpeg";
+
 
 const Team = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,6 +34,7 @@ const teamMembers = [
     { id: 10, name: "Moses J", position: "Head of Human Resources", image: hr, linkedin: "https://www.linkedin.com/in/moses-moses-j-ba11832b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
     { id: 11, name: "Nandhitta S", position: "Head of Industrial Relations", image: ir_2, linkedin: "https://www.linkedin.com/in/nandhitta-saravanan-29970029a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
     { id: 12, name: "Hari vignesh S", position: "Head of Industrial Relations", image: hari, linkedin: "https://www.linkedin.com/in/hari-vignesh-18201b283?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+    { id: 13, name: "Fawaz Sadhak", position: "Head of Logistics", image: logi, linkedin: "https://www.linkedin.com/in/fawaz-sadhak/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" }
    ];
 
   // Duplicate list for seamless infinite loop
