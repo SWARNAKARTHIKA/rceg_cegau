@@ -11,6 +11,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -59,12 +60,11 @@ const Navbar = () => {
         <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg">
           <div className="px-4 py-4 space-y-2">
             {["Home", "About", "Events", "Team", "Gallery", "Contact"].map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                className="block px-4 py-2 text-gray-700 hover:bg-amber-500 hover:text-white rounded-md transition-colors duration-300"
-                onClick={() => setIsOpen(false)}
-              >
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  className="block px-4 py-2 text-gray-700 hover:bg-amber-500 hover:text-white rounded-md transition-colors duration-300"
+                >
                 {link}
               </a>
             ))}

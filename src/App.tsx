@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import HealthCampDetail from './components/HealthCampDetail';
 import Loader from './components/Loader';
+
 import './styles/fonts.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -59,6 +60,41 @@ const HomePage = () => {
     }
   }, [loading]);
 
+  // Global delegated smooth-scroll for all in-page hash links
+  useEffect(() => {
+    if (loading) return;
+
+    const onDocClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const anchor = (target.closest && target.closest('a')) as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const href = anchor.getAttribute('href') || '';
+      if (!href.startsWith('#')) return; // only handle in-page hashes
+
+      // allow default for empty hash (could be used for other semantics)
+      e.preventDefault();
+
+      const id = href.slice(1);
+      const headerOffset = 80; // adjust to match navbar height
+
+      if (!id) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const el = document.getElementById(id);
+      if (el) {
+        const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    };
+
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, [loading]);
+
   if (loading) {
     return <Loader />;
   }
@@ -78,6 +114,7 @@ const HomePage = () => {
           <Team />
           <Gallery />
           <Contact />
+         
         </div>
       </div>
     </div>
