@@ -56,13 +56,6 @@ const Team = () => {
       linkedin: "https://linkedin.com/in/deerkkadharshini-s-160843286/" 
     },
     { 
-      id: 8, 
-      name: "Sornamala", 
-      position: "Head of Design", 
-      image: "https://res.cloudinary.com/dipcixbc4/image/upload/v1766146938/design_eqmjh3.jpg", 
-      linkedin: "https://www.linkedin.com/in/sornamala-u" 
-    },
-    { 
       id: 9, 
       name: "Kalisvikramkumar", 
       position: "Head of Events", 
