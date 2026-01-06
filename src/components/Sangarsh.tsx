@@ -247,7 +247,7 @@ const SANGARSH: React.FC = () => {
         className="bg-white rounded-2xl shadow-sm p-8 relative overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}src={`/src/assets/patrons/${patron.video}`}
+        viewport={{ once: true }}
 
       >
         <h2 className="text-3xl font-bold text-amber-900 mb-4">
