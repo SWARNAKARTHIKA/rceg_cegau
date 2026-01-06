@@ -12,18 +12,18 @@ import b3 from '../assets/sangarsh/b3.jpeg';
 import b4 from '../assets/sangarsh/b4.jpeg';
 
 // Beneficiary images
-import ben2007_1 from '../assets/sangarsh/BENEFICIARY/2007/contri.JPG';
+import ben2007_1 from '../assets/sangarsh/BENEFICIARY/2007/contri.jpg';
 import ben2009_1 from '../assets/sangarsh/BENEFICIARY/2009/b4.png';
-import ben2009_2 from '../assets/sangarsh/BENEFICIARY/2009/IMG_0415.JPG';
-import ben2010_1 from '../assets/sangarsh/BENEFICIARY/2010/IMG_0706 (2).JPG';
+import ben2009_2 from '../assets/sangarsh/BENEFICIARY/2009/IMG_0415.jpg';
+import ben2010_1 from '../assets/sangarsh/BENEFICIARY/2010/IMG_0706 (2).jpg';
 import ben2010_2 from '../assets/sangarsh/BENEFICIARY/2010/s2.jpg';
 import ben2011_1 from '../assets/sangarsh/BENEFICIARY/2011/1.jpg';
 import ben2011_2 from '../assets/sangarsh/BENEFICIARY/2011/3.png';
 import ben2012_1 from '../assets/sangarsh/BENEFICIARY/2012/IMG_8253.CR2.jpg';
 import ben2014_1 from '../assets/sangarsh/BENEFICIARY/2014/4.jpg';
 import ben2015_1 from '../assets/sangarsh/BENEFICIARY/2015/IMG_0908.jpg';
-import ben2018_1 from '../assets/sangarsh/BENEFICIARY/2018/IMG_0368.JPG';
-import ben2023_1 from '../assets/sangarsh/BENEFICIARY/2023/_DSC0830.JPG';
+import ben2018_1 from '../assets/sangarsh/BENEFICIARY/2018/IMG_0368.jpg';
+import ben2023_1 from '../assets/sangarsh/BENEFICIARY/2023/_DSC0830.jpg';
 
 const LEGACY = [
   {
