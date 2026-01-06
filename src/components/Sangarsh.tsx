@@ -247,7 +247,8 @@ const SANGARSH: React.FC = () => {
         className="bg-white rounded-2xl shadow-sm p-8 relative overflow-hidden"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true }}src={`/src/assets/patrons/${patron.video}`}
+
       >
         <h2 className="text-3xl font-bold text-amber-900 mb-4">
           What is SANGARSH?
@@ -375,7 +376,8 @@ We are coming together to support Aga Deepa Oli Trust, a home for visually chall
                       viewport={{ once: true }}
                     >
                       <video
-                        src={`/src/assets/patrons/${patron.video}`}
+                     src={`/patrons/${patron.video}`}
+
                         className="w-full h-56 rounded-xl shadow-md object-cover"
                         controls
                         controlsList="nodownload"
