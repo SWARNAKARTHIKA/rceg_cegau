@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Calendar, HeartHandshake, Music, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import SangarshNavbar from './SangarshNavbar';
 import sangarshLogo from '../assets/sangarsh/logo.png';
-import sangarshBg from '../assets/sangarsh/bg.png';
+// Local background import removed
 import Contact from "../components/Contact";
 
 import b1 from '../assets/sangarsh/b1.jpeg';
@@ -53,7 +53,7 @@ const LEGACY = [
   {
     year: '2011',
     beneficiary: 'Annai Shri Sharada Illam',
-    project: "Renovation of home infrastructure and sanitation facilities (funding ~\u20b910,00,000); additionally a donation of $1000 to Rotary International for Polio eradication.",
+    project: "Renovation of home infrastructure and sanitation facilities (funding ~₹10,00,000); additionally a donation of $1000 to Rotary International for Polio eradication.",
     performers: 'Andrea Jeremiah, Benny Dayal, Lady Kash & Krissy, Velmurugan, Mukesh',
   },
   {
@@ -96,16 +96,6 @@ const SANGARSH: React.FC = () => {
     if (scrollContainerRef.current) {
       const scrollAmount = 400;
       scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const scrollTransformed = (direction: 'left' | 'right') => {
-    if (transformedScrollRef.current) {
-      const scrollAmount = 400;
-      transformedScrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
       });
@@ -164,13 +154,11 @@ const SANGARSH: React.FC = () => {
     },
   ];
 
-  // Dynamically load all images from all_year folders using glob
   const allYearImages = import.meta.glob<{ default: string }>(
     '../assets/sangarsh/all_year/**/*.{jpg,jpeg,JPG,JPEG,png,PNG,CR2}',
     { eager: true }
   );
 
-  // Build a year -> images map from glob results (max 4 images per year)
   const yearImagesMap: { [key: string]: string[] } = {};
   Object.entries(allYearImages).forEach(([path, module]) => {
     const match = path.match(/all_year[\/\\](\d{4})[\/\\]/);
@@ -193,12 +181,11 @@ const SANGARSH: React.FC = () => {
           id="hero"
           className="w-screen h-screen bg-cover bg-center flex flex-col items-center justify-end pb-20 relative -ml-6 -mr-6"
           style={{
-            backgroundImage: `url(${sangarshBg})`,
+            backgroundImage: `url('https://res.cloudinary.com/dipcixbc4/image/upload/v1767719587/bg_hh2mev.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          {/* Dark gradient overlay for better contrast */}
           <div
             aria-hidden
             className="absolute inset-0"
@@ -208,7 +195,6 @@ const SANGARSH: React.FC = () => {
             }}
           />
 
-          {/* Subtle golden texture overlay (soft grain / stripes) */}
           <div
             aria-hidden
             className="absolute inset-0"
@@ -220,42 +206,36 @@ const SANGARSH: React.FC = () => {
               zIndex: 3,
             }}
           />
-         <img
-  src={sangarshLogo}
-  alt="SANGARSH Logo"
-  className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
-             w-11/12 sm:w-10/12 md:w-3/4 lg:w-2/3 xl:w-1/2 max-w-5xl 
-             z-10 pointer-events-none object-contain"
-  style={{
-    filter: `
-      drop-shadow(0 0 25px rgba(255, 200, 80, 0.55))
-      drop-shadow(0 0 60px rgba(255, 180, 60, 0.35))
-    `
-  }}
-/>
+          <img
+            src={sangarshLogo}
+            alt="SANGARSH Logo"
+            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                     w-11/12 sm:w-10/12 md:w-3/4 lg:w-2/3 xl:w-1/2 max-w-5xl 
+                     z-10 pointer-events-none object-contain"
+            style={{
+              filter: `
+                drop-shadow(0 0 25px rgba(255, 200, 80, 0.55))
+                drop-shadow(0 0 60px rgba(255, 180, 60, 0.35))
+              `
+            }}
+          />
 
-
-          {/* Emotional hook / one-line purpose (adds contrast & meaning) */}
-         <motion.p
-  initial={{ opacity: 0, y: 10 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  className="z-10 text-center text-white text-lg sm:text-xl font-semibold mb-3"
-  style={{
-    animation: 'whiteWiggle 2.8s ease-in-out infinite'
-  }}
->
-  
-
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="z-10 text-center text-white text-lg sm:text-xl font-semibold mb-3"
+            style={{
+              animation: 'whiteWiggle 2.8s ease-in-out infinite'
+            }}
+          >
             A musical evening where art becomes hope.
           </motion.p>
 
           <div className="flex justify-center items-center gap-3 text-amber-100 font-medium text-lg z-10">
             <Calendar size={20} /> March 22, 2026 · Vivekananda Auditorium
           </div>
-          </div>
-        
-
+        </div>
        {/* ABOUT – Split Cards */}
 <div id="about" className="bg-stone-50 py-20 border-t border-stone-200">
   <div className="container mx-auto px-6 max-w-6xl">
