@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import HealthCampDetail from './components/HealthCampDetail';
 import Loader from './components/Loader';
 import Aarambham2025 from './components/Aarambham2025';
+import Sangarsh from './components/Sangarsh';
 
 import './styles/fonts.css';
 
@@ -129,6 +130,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/health-camp" element={<HealthCampDetail />} />
           <Route path="/aarambham-2025" element={<Aarambham2025 />} />
+          <Route path="/sangarsh" element={<Sangarsh />} />
       </Routes>
     </div>
   );

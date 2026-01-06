@@ -7,4 +7,6 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  // Include uppercase image extensions and uncommon raw formats as assets
+  assetsInclude: ['**/*.JPG', '**/*.CR2', '**/*.JPEG', '**/*.PNG'],
 });
