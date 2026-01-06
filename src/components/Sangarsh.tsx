@@ -273,7 +273,7 @@ const SANGARSH: React.FC = () => {
           What is SANGARSH?
         </h2>
         <p className="text-lg leading-relaxed text-stone-600">
-          SANGARSH is the flagship charity concert of the Rotaract Club of the
+          SANGARSH is the flagship charity concert of the Rotaract club of the
           College of Engineering Guindy, Anna University. Since 2002, it has
           transformed music into meaningful action — uplifting lives through
           compassion, dignity, and opportunity.
