@@ -8,18 +8,19 @@ gsap.registerPlugin(ScrollTrigger);
 const Gallery = () => {
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  const images = [
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884528/15_kiv7yt.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884526/4_ztxcla.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884526/11_l7rnib.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884525/8_ouvfda.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884525/16_n31gkp.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884521/3_t7ziel.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884516/10_gtukdr.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884513/12_llxw3e.png",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884509/5_vfnjbh.jpg",
-    "https://res.cloudinary.com/dipcixbc4/image/upload/v1765884498/9_y6ytel.jpg"
-  ];
+const images = [
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/15_kiv7yt.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/4_ztxcla.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/11_l7rnib.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/8_ouvfda.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/16_n31gkp.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/3_t7ziel.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/10_gtukdr.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/12_llxw3e.png",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/5_vfnjbh.jpg",
+  "https://res.cloudinary.com/dipcixbc4/image/upload/w_800,f_auto,q_auto/9_y6ytel.jpg"
+];
+
 
   useEffect(() => {
     // We use context to ensure GSAP targets the right elements and cleans up properly

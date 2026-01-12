@@ -2,28 +2,68 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, HeartHandshake, Music, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import SangarshNavbar from './SangarshNavbar';
-import sangarshLogo from '../assets/sangarsh/logo.png';
-// Local background import removed
+
+
 import Contact from "../components/Contact";
 
-import b1 from '../assets/sangarsh/b1.jpeg';
-import b2 from '../assets/sangarsh/b2.jpeg';
-import b3 from '../assets/sangarsh/b3.jpeg';
-import b4 from '../assets/sangarsh/b4.jpeg';
 
-// Beneficiary images
-import ben2007_1 from '../assets/sangarsh/BENEFICIARY/2007/contri.jpg';
-import ben2009_1 from '../assets/sangarsh/BENEFICIARY/2009/b4.png';
-import ben2009_2 from '../assets/sangarsh/BENEFICIARY/2009/IMG_0415.jpg';
-import ben2010_1 from '../assets/sangarsh/BENEFICIARY/2010/IMG_0706 (2).jpg';
-import ben2010_2 from '../assets/sangarsh/BENEFICIARY/2010/s2.jpg';
-import ben2011_1 from '../assets/sangarsh/BENEFICIARY/2011/1.jpg';
-import ben2011_2 from '../assets/sangarsh/BENEFICIARY/2011/3.png';
-import ben2012_1 from '../assets/sangarsh/BENEFICIARY/2012/IMG_8253.CR2.jpg';
-import ben2014_1 from '../assets/sangarsh/BENEFICIARY/2014/4.jpg';
-import ben2015_1 from '../assets/sangarsh/BENEFICIARY/2015/IMG_0908.jpg';
-import ben2018_1 from '../assets/sangarsh/BENEFICIARY/2018/IMG_0368.jpg';
-import ben2023_1 from '../assets/sangarsh/BENEFICIARY/2023/_DSC0830.jpg';
+
+
+
+const LEGACY_IMAGES: Record<string, string[]> = {
+  "2007": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2007_1_danw0l.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2007_2_g0cmqe.jpg"
+  ],
+  "2008": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2008_gatxcf.jpg"
+  ],
+  "2009": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2009_1_olqvgx.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2009_3_hfo8xy.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2009_4_ytjbnl.jpg"
+  ],
+  "2010": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2010_1_ncthvz.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2010_2_gvq1rh.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2010_3_bx5hzh.jpg"
+  ],
+  "2011": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2011_1_y4vtal.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2011_2_rlci98.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2011_3_v6vyno.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2011_4_gvtpnz.jpg"
+  ],
+  "2012": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2012_1_ohkjbv.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2012_2_acw34m.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2012_3_txkk2h.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2012_4_xyn8ca.jpg"
+  ],
+  "2014": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2014_1_kudob4.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2014_2_efzwad.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2014_3_m8qm5w.jpg"
+  ],
+  "2015": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2015_1_yuqrdq.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2015_2_fu3itn.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2015_3_azwmit.jpg"
+  ],
+  "2018": [
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2018_1_dxtabx.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2018_2_mhugp1.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2018_3_pvsb0e.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2018_4_ylaz7f.jpg",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2018_5_eovwnk.jpg"
+  ],
+  "2023": ["https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2023_1_zofxqy.png ",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2023_2_ib30e8.png",
+    "https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2023_3_amo7ka.png","https://res.cloudinary.com/drb3yc8yr/image/upload/w_800,f_auto,q_auto/2023_4_kem8i1.png"
+  ] 
+};
+
+
 
 const LEGACY = [
   {
@@ -107,52 +147,74 @@ const SANGARSH: React.FC = () => {
   }, []);
 
   const BENEFICIARIES = [
-    {
-      year: '2007',
-      images: [ben2007_1],
-      desc: LEGACY.find(l => l.year === '2007')?.beneficiary || 'Support & facilities for special children',
-    },
-    {
-      year: '2009',
-      images: [ben2009_1, ben2009_2],
-      desc: LEGACY.find(l => l.year === '2009')?.beneficiary || 'Home renovations and care',
-    },
-    {
-      year: '2010',
-      images: [ben2010_1, ben2010_2],
-      desc: LEGACY.find(l => l.year === '2010')?.beneficiary || 'Healthcare & housing support',
-    },
-    {
-      year: '2011',
-      images: [ben2011_1, ben2011_2],
-      desc: "Renovation & sanitation support for Annai Shri Sharada Illam; funds and fundraising activities helped improve living conditions and health services.",
-    },
-    {
-      year: '2012',
-      images: [ben2012_1],
-      desc: LEGACY.find(l => l.year === '2012')?.beneficiary || 'Educational support',
-    },
-    {
-      year: '2014',
-      images: [ben2014_1],
-      desc: 'Funds raised for children of the Hemophilia Society, Madras — support for medical care and better access to services.',
-    },
-    {
-      year: '2015',
-      images: [ben2015_1],
-      desc: 'Supported medication and treatment for children with Lysosomal Storage Disorders through targeted fundraising.',
-    },
-    {
-      year: '2018',
-      images: [ben2018_1],
-      desc: LEGACY.find(l => l.year === '2018')?.beneficiary || 'Transport & home support',
-    },
-    {
-      year: '2023',
-      images: [ben2023_1],
-      desc: 'Supported COODU Trust, Dindigul — facilitating a Self-Employment Centre and inclusive facilities for persons with disabilities.',
-    },
-  ];
+  {
+    year: '2007',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/dsc_bvbsjd.png"
+    ],
+    desc: LEGACY.find(l => l.year === '2007')?.beneficiary || 'Support & facilities for special children',
+  },
+  {
+    year: '2009',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/b4_w7oqxu.png",
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/IMG_0415_ev1cxv.jpg"
+    ],
+    desc: LEGACY.find(l => l.year === '2009')?.beneficiary || 'Home renovations and care',
+  },
+  {
+    year: '2010',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/IMG_0706_2_cfkvi4.jpg",
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/s2_walkyw.jpg"
+    ],
+    desc: LEGACY.find(l => l.year === '2010')?.beneficiary || 'Healthcare & housing support',
+  },
+  {
+    year: '2011',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/1_iyt67a.jpg",
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/3_yngjlf.png"
+    ],
+    desc: "Renovation & sanitation support for Annai Shri Sharada Illam; funds and fundraising activities helped improve living conditions and health services.",
+  },
+  {
+    year: '2012',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/IMG_8253.CR2_xsvor1.jpg"
+    ],
+    desc: LEGACY.find(l => l.year === '2012')?.beneficiary || 'Educational support',
+  },
+  {
+    year: '2014',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/4_llxhwz.jpg"
+    ],
+    desc: 'Funds raised for children of the Hemophilia Society, Madras — support for medical care and better access to services.',
+  },
+  {
+    year: '2015',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/IMG_0908_ezekl4.jpg"
+    ],
+    desc: 'Supported medication and treatment for children with Lysosomal Storage Disorders through targeted fundraising.',
+  },
+  {
+    year: '2018',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/IMG_0368_zxvncq.jpg"
+    ],
+    desc: LEGACY.find(l => l.year === '2018')?.beneficiary || 'Transport & home support',
+  },
+  {
+    year: '2023',
+    images: [
+      "https://res.cloudinary.com/drb3yc8yr/image/upload/w_480,f_auto,q_auto/contri_bn1kzp.jpg"
+    ],
+    desc: 'Supported COODU Trust, Dindigul — facilitating a Self-Employment Centre and inclusive facilities for persons with disabilities.',
+  },
+];
+
 
   const allYearImages = import.meta.glob<{ default: string }>(
     '../assets/sangarsh/all_year/**/*.{jpg,jpeg,JPG,JPEG,png,PNG,CR2}',
@@ -179,9 +241,9 @@ const SANGARSH: React.FC = () => {
         {/* HERO */}
         <div
           id="hero"
-          className="w-screen h-screen bg-cover bg-center flex flex-col items-center justify-end pb-20 relative -ml-6 -mr-6"
+          className="w-screen h-screen bg-cover bg-center flex flex-col items-center justify-end pb-20 relative "
           style={{
-            backgroundImage: `url('https://res.cloudinary.com/dipcixbc4/image/upload/v1767719587/bg_hh2mev.png')`,
+            backgroundImage: `url('https://res.cloudinary.com/dipcixbc4/image/upload//w_1200,f_auto,q_auto/bg_hh2mev.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -207,7 +269,7 @@ const SANGARSH: React.FC = () => {
             }}
           />
           <img
-            src={sangarshLogo}
+             src="https://res.cloudinary.com/drb3yc8yr/image/upload/w_1200,f_auto,q_auto,dpr_auto/logo_o6ghgw.png"
             alt="SANGARSH Logo"
             className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
                      w-11/12 sm:w-10/12 md:w-3/4 lg:w-2/3 xl:w-1/2 max-w-5xl 
@@ -400,47 +462,58 @@ We are coming together to support Aga Deepa Oli Trust, a home for visually chall
 
 
         {/* LEGACY TIMELINE */}
-        <div id="legacy" className="bg-stone-50 py-20">
-          <div className="container mx-auto px-6 max-w-5xl">
-            <h2 className="text-3xl font-bold text-center text-amber-900 mb-16">Legacy of SANGARSH</h2>
+       {/* LEGACY OF SANGARSH */}
+<div id="legacy" className="bg-stone-50 py-20">
+  <div className="container mx-auto px-6 max-w-5xl">
+    <h2 className="text-3xl font-bold text-center text-amber-900 mb-16">
+      Legacy of SANGARSH
+    </h2>
 
-            <div className="relative border-l-2 border-amber-300">
-              {LEGACY.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  className="ml-8 mb-16"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <span className="absolute -left-[10px] mt-2 h-5 w-5 rounded-full bg-amber-600" />
+    <div className="relative border-l-2 border-amber-300">
+      {LEGACY.map((item, idx) => (
+        <motion.div
+          key={idx}
+          className="ml-8 mb-16"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="absolute -left-[10px] mt-2 h-5 w-5 rounded-full bg-amber-600" />
 
-                  <h3 className="text-2xl font-bold text-amber-800">{item.year}</h3>
-                  <p className="text-stone-700 mt-2"><strong>Beneficiary:</strong> {item.beneficiary}</p>
-                  <p className="text-stone-600 mt-1"><strong>Project:</strong> {item.project}</p>
-                  <p className="text-stone-500 mt-1 italic"><strong>Performers:</strong> {item.performers}</p>
+          <h3 className="text-2xl font-bold text-amber-800">{item.year}</h3>
+          <p className="text-stone-700 mt-2">
+            <strong>Beneficiary:</strong> {item.beneficiary}
+          </p>
+          <p className="text-stone-600 mt-1">
+            <strong>Project:</strong> {item.project}
+          </p>
+          <p className="text-stone-500 mt-1 italic">
+            <strong>Performers:</strong> {item.performers}
+          </p>
 
-                  {/* Horizontal image strip (no gaps) for this year */}
-                  <div className="mt-4 flex gap-0 overflow-x-auto">
-                    {(yearImagesMap[item.year] || []).map((img, imgIdx) => (
-                      <img
-                        key={`${item.year}-img-${imgIdx}`}
-                        src={img}
-                        alt={`${item.year} image ${imgIdx + 1}`}
-                        className="h-40 object-cover flex-shrink-0"
-                      />
-                    ))}
-                    {(!yearImagesMap[item.year] || yearImagesMap[item.year].length === 0) && (
-                      <div className="h-40 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700 font-semibold w-full">
-                        Year-wise Image Placeholder
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          {/* Horizontal image strip (fast-loading Cloudinary URLs) */}
+          <div className="mt-4 flex gap-0 overflow-x-auto">
+            {(LEGACY_IMAGES[item.year] || []).map((img, imgIdx) => (
+              <img
+                key={`${item.year}-img-${imgIdx}`}
+                src={img}
+                alt={`${item.year} image ${imgIdx + 1}`}
+                className="h-40 object-cover flex-shrink-0"
+              />
+            ))}
+
+            {/* Placeholder if no images */}
+            {(!LEGACY_IMAGES[item.year] || LEGACY_IMAGES[item.year].length === 0) && (
+              <div className="h-40 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700 font-semibold w-full">
+                Year-wise Image Placeholder
+              </div>
+            )}
           </div>
-        </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
 
         <Contact />
 
