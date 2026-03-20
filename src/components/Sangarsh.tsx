@@ -3,11 +3,77 @@ import { motion } from 'framer-motion';
 import { Calendar, HeartHandshake, Music, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import SangarshNavbar from './SangarshNavbar';
 
-
 import Contact from "../components/Contact";
 
+import singer1 from '../assets/Sangarsh26/Abilash_Venkitachalam.png';
+import singer2 from '../assets/Sangarsh26/Kizhakkuvaasi_Chanderan.png';
+import singer3 from '../assets/Sangarsh26/Ruthresh.png';
+import singer4 from '../assets/Sangarsh26/Srimathi_Selvakumar.png';
+import singer5 from '../assets/Sangarsh26/Srisakthi_Selvakumar.png';
+import singer6 from '../assets/Sangarsh26/Srinivas.png';
 
 
+import sponsor1 from '../assets/Sangarsh26/GracissFeminity.png';
+import sponsor2 from '../assets/Sangarsh26/nkcompassion.jpeg';
+import sponsor3 from '../assets/Sangarsh26/rajam.jpeg';
+import sponsor4 from '../assets/Sangarsh26/AKStudio.jpeg';
+import sponsor5 from '../assets/Sangarsh26/gurunath.png';
+
+const SPONSORS = [
+  {
+    name: "Graciss Feminity",
+    role: "Event Sponsor",
+    image: sponsor1
+  },
+  {
+    name: "NK Compassion", // you can change later
+    role: "Social Impact Sponsor",
+    image: sponsor2
+  },
+  {
+    name: "Rajams",
+    role: "Printing Sponsor",
+    image: sponsor3
+  },
+  {
+    name: "AK Studio",
+    role: "Printing Sponsor",
+    image: sponsor4
+  },
+  {
+    name: "Gurunath",
+    role: "Logistics Sponsor",
+    image: sponsor5
+  }
+];
+
+
+const SANGARSH_26_SINGERS = [
+  {
+    name: "Abilash Venkitachalam",
+    image: singer1
+  },
+  {
+    name: "Kizhakkuvaasi Chanderan",
+    image: singer2
+  },
+  {
+    name: "Ruthresh",
+    image: singer3
+  },
+  {
+    name: "Srimathi Selvakumar",
+    image: singer4
+  },
+  {
+    name: "Srisakthi Selvakumar",
+    image: singer5
+  },
+  {
+    name: "Srinivas",
+    image: singer6
+  }
+];
 
 
 const LEGACY_IMAGES: Record<string, string[]> = {
@@ -343,6 +409,91 @@ We are coming together to support Aga Deepa Oli Trust, a home for visually chall
 
     
       </motion.div>
+
+    </div>
+  </div>
+</div>
+
+
+{/* SANGARSH '26 – Performers */}
+<div id="sangarsh-26" className="bg-stone-50 py-16 border-t border-stone-200">
+  <div className="container mx-auto px-6 max-w-6xl">
+
+    <h2 className="text-3xl font-bold text-center text-amber-900 mb-4">
+      SANGARSH ’26
+    </h2>
+
+    <p className="text-center text-stone-600 max-w-3xl mx-auto mb-10">
+      Meet the incredible artists who will light up the stage this year.
+    </p>
+
+    {/* Grid: 2 rows × 3 columns */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+      {SANGARSH_26_SINGERS.map((singer, index) => (
+  <motion.div key={index} className="text-center group">
+    
+    <div className="bg-gradient-to-br from-[#A0522D] via-[#D2A679] to-[#F5DEB3] rounded-xl shadow-lg flex items-end justify-center h-64 p-4 overflow-hidden">
+      
+      <img
+        src={singer.image}
+        alt={singer.name}
+       className={`object-contain object-bottom transition-transform duration-300 ${
+  ["Srimathi Selvakumar", "Srinivas"].includes(singer.name)
+    ? "h-[115%] scale-150"
+    : "h-[110%] scale-110"
+}`}
+      />
+
+    </div>
+
+    <p className="mt-4 text-lg font-semibold text-amber-900">
+      {singer.name}
+    </p>
+
+  </motion.div>
+))}
+
+    </div>
+  </div>
+</div>
+
+
+{/* SPONSORS */}
+<div className="bg-stone-50 py-16 border-t border-stone-200">
+  <div className="container mx-auto px-6 max-w-6xl">
+
+    <h2 className="text-3xl font-bold text-center text-amber-900 mb-4">
+      Sponsors for Sangarsh'26
+    </h2>
+
+    <p className="text-center text-stone-600 max-w-3xl mx-auto mb-10">
+      We thank our partners for supporting SANGARSH ’26 and making this event possible.
+    </p>
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
+
+      {SPONSORS.map((sponsor, index) => (
+        <div key={index} className="text-center group">
+
+          <div className="flex items-center justify-center h-40 p-4">
+            <img
+              src={sponsor.image}
+              alt={sponsor.name}
+              className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          <p className="mt-3 text-md font-semibold text-amber-900">
+            {sponsor.name}
+          </p>
+
+          <p className="text-sm text-stone-600">
+            {sponsor.role}
+          </p>
+
+        </div>
+      ))}
 
     </div>
   </div>

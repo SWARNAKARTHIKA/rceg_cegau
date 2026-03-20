@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const OPTIMIZE = 'w_600,f_auto,q_auto';
 
@@ -78,7 +79,9 @@ const Events = () => {
           {/* SANGARSH */}
           <motion.div whileHover={{ y: -8 }} className="bg-white rounded-3xl overflow-hidden shadow-lg flex flex-col">
             <div className="h-56 overflow-hidden">
+              <Link to="/sangarsh">
               <img src={cdnSangarsh} alt="SANGARSH" className="w-full h-full object-cover" />
+              </Link>
             </div>
             <div className="p-6 flex flex-col flex-grow">
               <h3 className="text-2xl font-bold text-stone-800 mb-2">SANGARSH</h3>
